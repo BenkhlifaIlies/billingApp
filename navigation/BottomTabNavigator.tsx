@@ -20,7 +20,7 @@ import {
   TabTwoParamList,
   TabThreeParamList,
 } from "../types";
-import { useNavigation } from "@react-navigation/native";
+import { stackHeader } from "../constants/DesignColors";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -29,32 +29,32 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName='TabOne'
+      initialRouteName='Billing'
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name='TabOne'
+        name='Billing'
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='ios-code' color={color} />
+            <TabBarIcon name='md-cash-outline' color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name='TabTwo'
+        name='Details'
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='ios-code' color={color} />
+            <TabBarIcon name='md-file-tray-full-outline' color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name='TabThree'
+        name='Logout'
         component={TabThreeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='ios-code' color={color} />
+            <TabBarIcon name='log-out-outline' color={color} />
           ),
         }}
       />
@@ -82,7 +82,10 @@ function TabOneNavigator() {
         component={TabOneScreen}
         options={{
           headerTitle: "Billing",
-          headerTitleStyle: { textAlign: "center", color: "#000" },
+          headerTitleStyle: { textAlign: "center", color: "black" },
+          headerStyle: {
+            backgroundColor: String(stackHeader),
+          },
         }}
       />
     </TabOneStack.Navigator>
@@ -99,7 +102,10 @@ function TabTwoNavigator() {
         component={TabTwoScreen}
         options={{
           headerTitle: "Items",
-          headerTitleStyle: { textAlign: "center", color: "#000" },
+          headerTitleStyle: { textAlign: "center", color: "black" },
+          headerStyle: {
+            backgroundColor: String(stackHeader),
+          },
         }}
       />
     </TabTwoStack.Navigator>
@@ -116,7 +122,10 @@ function TabThreeNavigator() {
         component={TabThreeScreen}
         options={{
           headerTitle: "Log Out",
-          headerTitleStyle: { textAlign: "center", color: "#000" },
+          headerTitleStyle: { textAlign: "center", color: "black" },
+          headerStyle: {
+            backgroundColor: String(stackHeader),
+          },
         }}
       />
     </TabThreeStack.Navigator>
