@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import { lightGrey } from "../constants/DesignColors";
+import { Product } from "../constants/Product";
 import { useProductContext } from "../providers/ProductContext";
 
 const initialEmptyPlaceHolderLength = 9;
@@ -18,7 +19,7 @@ const ItemsList = () => {
     new Array(initialEmptyPlaceHolderLength),
   );
 
-  const renderListItems = () => {
+  const renderListItems = (productList:Product[]) => {
     let i = 1;
     const t = Array.apply(
       null,
@@ -57,7 +58,7 @@ const ItemsList = () => {
           <DataTable.Title numeric>Price</DataTable.Title>
           <DataTable.Title numeric>Total Price</DataTable.Title>
         </DataTable.Header>
-        <ScrollView style={styles.container}>{renderListItems()}</ScrollView>
+        <ScrollView style={styles.container}>{renderListItems(productList)}</ScrollView>
       </DataTable>
     </ScrollView>
   );
