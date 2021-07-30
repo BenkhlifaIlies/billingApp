@@ -1,6 +1,6 @@
-import { Formik } from "formik";
 import * as React from "react";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+
 import BillCalculator from "../components/BillCalculator";
 import ItemForm from "../components/ItemForm";
 import ItemsList from "../components/ItemsList";
@@ -8,9 +8,9 @@ import ItemsList from "../components/ItemsList";
 export default function BillingScreen() {
   return (
     <SafeAreaView style={styles.container}>
-        <ItemForm />
-        <ItemsList />
-        <BillCalculator />
+      <ItemForm />
+      <ItemsList />
+      <BillCalculator />
     </SafeAreaView>
   );
 }

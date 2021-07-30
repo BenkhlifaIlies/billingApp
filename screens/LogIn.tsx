@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import * as SecureStore from "expo-secure-store";
 import { appleBlue, darkGrey, lightGrey } from "../constants/DesignColors";
+import { useAuthContext } from "../providers/AuthContext";
 // import { useNavigation } from "@react-navigation/native";
 
 const validationSchema = yup.object().shape({
@@ -43,11 +44,25 @@ const Input = ({ label, type, ...props }: any) => {
   );
 };
 
-const LogIn = ({...props}:any) => {
-  console.log(props.navigation);
-  
+const LogIn = ({ ...props }: any) => {
+  const [token, setToken] = useAuthContext();
+
   const [username, setUsername] = useState<String>("Ilies Benkhelifa");
   const [password, setPassword] = useState<String>("password");
+  const [loggedIn, setLoggedIn] = useState<Boolean>(false);
+
+  useEffect(() => {
+    if (loggedIn) {
+      (async function () {
+        try {
+          await SecureStore.setItemAsync("Authorization", "dummy token");
+          setToken("dummy data");
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [loggedIn]);
 
   return (
     <View style={styles.container}>
@@ -55,18 +70,7 @@ const LogIn = ({...props}:any) => {
       <Formik
         initialValues={{ username, password }}
         onSubmit={async (values, actions) => {
-          try {
-            // await loginAction();
-            await SecureStore.setItemAsync("Authorization", "token");
-            console.log("token saved");
-            actions.setSubmitting(false);
-            props.navigation.replace("Root",{screen:"Billing"});
-          } catch (error) {
-            console.log(error);
-          }
-          // setTimeout(() => {
-          //   // setloggedIn(true);
-          // }, 500);
+          setLoggedIn(true);
         }}
         validationSchema={validationSchema}>
         {(formikProps) => (
@@ -74,7 +78,7 @@ const LogIn = ({...props}:any) => {
             <Input
               type='username'
               label='Username'
-              defaultValue={username}
+              defaultValue={"Ilies Benkhelifa"}
               onChangeText={formikProps.handleChange("username")}
             />
             <Text style={styles.errorMsg}>
@@ -83,7 +87,7 @@ const LogIn = ({...props}:any) => {
             <Input
               secureTextEntry={true}
               label='Password'
-              defaultValue={password}
+              defaultValue={"password"}
               onChangeText={formikProps.handleChange("password")}
             />
             <Text style={styles.errorMsg}>
@@ -92,8 +96,6 @@ const LogIn = ({...props}:any) => {
             <TouchableOpacity
               {...formikProps}
               onPress={() => {
-                setUsername(formikProps.values.username);
-                setPassword(formikProps.values.password);
                 formikProps.handleSubmit();
                 // navigation.replace("Root", { screen: "Billing" });
               }}

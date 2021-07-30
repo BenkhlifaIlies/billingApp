@@ -5,20 +5,18 @@ import { Text, View } from "../components/Themed";
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { appleBlue } from "../constants/DesignColors";
+import { useAuthContext } from "../providers/AuthContext";
 
 export default function TabThreeScreen({ ...props }) {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
+  const [token, setToken] = useAuthContext();
   useEffect(() => {
     const logoutAction = async () => {
       await SecureStore.deleteItemAsync("Authorization");
-      console.log("loged out");
     };
-    logoutAction();
     setTimeout(async () => {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "LogIn" }],
-      });
+      logoutAction();
+      setToken(null);
     }, 1000);
   }, []);
   return (

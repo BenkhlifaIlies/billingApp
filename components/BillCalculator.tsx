@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, Keyboard } from "react-native";
-import { DISCOUNT } from "../constants/Calculattions";
-import { Product } from "../constants/Product";
+import { View } from "./Themed";
+
 import { useBillContext } from "../providers/BillContext";
 import { useProductContext } from "../providers/ProductContext";
-import { View } from "./Themed";
+
+import { DISCOUNT } from "../constants/Calculattions";
+import { Product } from "../constants/Product";
+
 const BillCalculator = () => {
   const [productList] = useProductContext();
   const [tax] = useBillContext();
@@ -62,7 +65,6 @@ const styles = StyleSheet.create({
   billDeyail: {
     fontSize: 16,
     marginVertical: 10,
-    // fontWeight:"bold"
   },
 });
 export default BillCalculator;

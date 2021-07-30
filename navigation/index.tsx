@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as SecureStore from "expo-secure-store";
 
@@ -9,31 +9,38 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
 import { ProductProvider } from "../providers/ProductContext";
 import { BillProvider } from "../providers/BillContext";
-import { NavigationContainer } from "@react-navigation/native";
 
-export default function Navigation({ navigation }: any) {
-  const [token, setToken] = useState<null | string>(null);
+import {useAuthContext } from "../providers/AuthContext";
+
+export default function Navigation({ colorScheme }: any) {
+  const [token, setToken] = useAuthContext();
+
   useEffect(() => {
     const checkToken = async () => {
-      const getToken = await SecureStore.getItemAsync("Authorization");
-      setToken(getToken);
+      try {
+        const getToken = await SecureStore.getItemAsync("Authorization");
+        setToken(getToken);
+      } catch (error) {
+        console.log(error);
+      }
     };
+    const ac = new AbortController();
     checkToken();
-  }, []);
+    return () => ac.abort();
+  }, [token]);
 
   return (
-   <NavigationContainer>
+    <>
       {token !== null ? (
         <ProductProvider>
           <BillProvider>
-            <RootNavigator />
+          <RootNavigator />
           </BillProvider>
         </ProductProvider>
       ) : (
         <AuthStackScreen />
-        // <LogIn />
       )}
-     </NavigationContainer>
+    </>
   );
 }
 
@@ -43,7 +50,6 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Root' component={BottomTabNavigator} />
-      <Stack.Screen name='LogIn' component={LogIn} />
       <Stack.Screen
         name='NotFound'
         component={NotFoundScreen}
@@ -55,7 +61,6 @@ function RootNavigator() {
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator>
-    <AuthStack.Screen name="LogIn" component={LogIn} />
-    <Stack.Screen name='Root' component={BottomTabNavigator} />
+    <AuthStack.Screen name='LogIn' component={LogIn} />
   </AuthStack.Navigator>
 );

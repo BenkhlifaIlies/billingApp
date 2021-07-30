@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ActivityIndicator,
   SafeAreaView,
@@ -12,7 +12,6 @@ import * as yup from "yup";
 import { Picker } from "@react-native-picker/picker";
 import { appleBlue, lightGrey } from "../constants/DesignColors";
 import { useProductContext } from "../providers/ProductContext";
-import { Product } from "../constants/Product";
 import { useBillContext } from "../providers/BillContext";
 
 const validationSchema = yup.object().shape({
@@ -43,26 +42,28 @@ const validationSchema = yup.object().shape({
 });
 
 const ItemForm = () => {
-  
   const [productList, setProductList] = useProductContext();
   const [tax, setTax] = useBillContext();
   
-  console.log(tax);
-  const [selectedState, setSelectedState] = useState(0.05);
-
-  const [product, setProduct] = useState<Product>({
-    productLabel: "",
-    productPrice: 0,
-    quantity: 0,
-  });
+  const handleInsertion = (values:any) => {
+    const newArray = productList;
+    try {
+      newArray.unshift({
+        productLabel: values.productLabel,
+        productPrice: Number(values.productPrice),
+        quantity: Number(values.quantity),
+      });
+      setProductList([...newArray]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SafeAreaView style={styles.Screenontainer}>
       <Formik
         initialValues={{ productLabel: "", productPrice: "", quantity: "" }}
         onSubmit={(values, actions) => {
-          const newArray = productList;
-          newArray.unshift(product);
-          setProductList([...newArray]);
+          handleInsertion(values)
           actions.resetForm();
           setTimeout(() => {
             actions.setSubmitting(false);
@@ -83,13 +84,13 @@ const ItemForm = () => {
                   margin: 0,
                   padding: 0,
                 }}
-                selectedValue={selectedState}
-                onValueChange={(itemValue, itemIndex) =>{
-                  setTax(itemValue)
-                  setSelectedState(itemValue);
+                selectedValue={tax}
+                onValueChange={(itemValue, itemIndex) => {
+                  setTax(itemValue);
+                  // setSelectedState(itemValue);
                   console.log(itemValue);
                 }}>
-                <Picker.Item label='State Selected: AK - 5.0%' value="0.05" />
+                <Picker.Item label='State Selected: AK - 5.0%' value='0.05' />
                 <Picker.Item label='State Selected: AL - 6.0%' value='0.06' />
                 <Picker.Item label='State Selected: AR - 3.0%' value='0.03' />
                 <Picker.Item label='State Selected: AS - 5.7%' value='0.057' />
@@ -148,14 +149,6 @@ const ItemForm = () => {
                   <>
                     <Text
                       onPress={() => {
-                        setProduct({
-                          productLabel: formikProps.values.productLabel,
-                          productPrice: parseInt(
-                            formikProps.values.productPrice,
-                          ),
-                          quantity: parseInt(formikProps.values.quantity),
-                        });
-                        // formikProps.resetForm();
                         formikProps.handleSubmit();
                       }}
                       style={styles.clickableText}>
@@ -187,15 +180,6 @@ const ItemForm = () => {
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    // display: "flex",
-    // flexDirection: "column-reverse",
-    // justifyContent: "flex-end",
-    // alignItems: "center",
-    // maxHeight: 200,
-    backgroundColor: "blue",
-    flex: 1,
-  },
   formHeader: {
     padding: 6,
     display: "flex",

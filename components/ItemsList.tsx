@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import { lightGrey } from "../constants/DesignColors";
 import { useProductContext } from "../providers/ProductContext";
 const initialEmptyPlaceHolderLength = 9;
-const ItemsList = () => {
-  console.log("rerender");
 
-  const [productList, setProductList] = useProductContext();
-  const [initialEmptyPlaceHolder, setinitialEmptyPlaceHolder] = useState(
+const ItemsList = () => {
+  const [productList] = useProductContext();
+  const [initialEmptyPlaceHolder] = useState(
     new Array(initialEmptyPlaceHolderLength),
   );
 
@@ -55,6 +54,7 @@ const ItemsList = () => {
       </DataTable>
     </ScrollView>
   );
+  
 };
 
 const styles = StyleSheet.create({

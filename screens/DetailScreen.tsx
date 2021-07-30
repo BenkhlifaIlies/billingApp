@@ -1,15 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { appleBlue, lightGrey } from "../constants/DesignColors";
-const DetailsScreen = ({route}:any) => {
-    const { item } = route.params;
-    console.log(item);
-    
+const DetailsScreen = ({ route }: any) => {
+  const { item } = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.centred}>{ item.productLabel } </Text>
-      <Text style={styles.centred}>{ item.productPrice } </Text>
-      <Text style={styles.centred}>{ item.quantity } </Text>
+      <Text style={styles.centred}>{item.productLabel} </Text>
+      <Text style={styles.centred}>{item.productPrice} </Text>
+      <Text style={styles.centred}>{item.quantity} </Text>
     </View>
   );
 };
