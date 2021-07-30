@@ -1,98 +1,16 @@
-// const LogIn = ({ navigation }: any) => {
-//   //   const colorScheme = useColorScheme();
-
-//   //   const [loggedIn, setLoggedIn] = useState(false);
-
-//   const loginAction = async () => {
-//     await SecureStore.setItemAsync("Authorization", "token");
-//     console.log("logged in ...");
-//     // setLoggedIn(true);
-//     navigation.replace("Root", { screen: "TabOne" });
-//   };
-//   // return (
-//   //   <React.Fragment>
-//   //     {
-//   //   //   loggedIn ? (
-//   //       // <DrawerNavigator />
-//   //       // <SafeAreaProvider>
-//   //       // <Navigation colorScheme={colorScheme} />
-//   //   //   ) : (
-//   //       //   <StatusBar />
-//   //       // </SafeAreaProvider>
-//   //       <View style={styles.container}>
-//   //         <Text style={styles.title}>LOGIN TO YOUR ACCOUNT NOW !!</Text>
-//   //         <View
-//   //           style={styles.separator}
-//   //           lightColor='#eee'
-//   //           darkColor='rgba(255,255,255,0.1)'
-//   //         />
-//   //         <Button
-//   //           onPress={loginAction}
-//   //           title='Login'
-//   //           color='#841584'
-//   //           accessibilityLabel='Learn more about this purple button'
-//   //         />
-//   //       </View>
-//   //   //   )
-//   //     }
-//   //   </React.Fragment>
-//   // );
-//   return (
-//     <SafeAreaView style={styles.wrapper}>
-//       <View style={styles.container}>
-//         <Formik
-//           initialValues={{ productLabel: "", productPrice: 0, quantity: 0 }}
-//           onSubmit={(values, actions) => {
-//             setTimeout(() => {
-//               actions.setSubmitting(false);
-//             }, 500);
-//           }}
-//           validationSchema={validationSchema}>
-//           {(formikProps) => (
-//             <React.Fragment>
-//               <TextInput
-//                 style={styles.TextInput}
-//                 placeholder='Enter Product Label'
-//                 onChangeText={formikProps.handleChange("productLabel")}
-//               />
-//               <Text style={styles.errorMsg}>
-//                 {formikProps.touched.productLabel &&
-//                   formikProps.errors.productLabel}
-//               </Text>
-//               <View
-//                 style={
-//                   !!!formikProps.errors
-//                     ? { display: "none" }
-//                     : { display: "flex" }
-//                 }>
-//                 <Text style={styles.errorMsg}>
-//                   {(formikProps.touched.productPrice &&
-//                     formikProps.errors.productPrice) ||
-//                     (formikProps.touched.quantity &&
-//                       formikProps.errors.quantity)}
-//                 </Text>
-//               </View>
-//             </React.Fragment>
-//           )}
-//         </Formik>
-//       </View>
-//     </SafeAreaView>
-//   );
-// };
-
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-  Button,
 } from "react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
 import * as SecureStore from "expo-secure-store";
 import { appleBlue, darkGrey, lightGrey } from "../constants/DesignColors";
+// import { useNavigation } from "@react-navigation/native";
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -125,35 +43,29 @@ const Input = ({ label, type, ...props }: any) => {
   );
 };
 
-const LogIn = ({ navigation }: any) => {
+const LogIn = ({...props}:any) => {
+  console.log(props.navigation);
+  
   const [username, setUsername] = useState<String>("Ilies Benkhelifa");
   const [password, setPassword] = useState<String>("password");
-  // const [loggedIn, setloggedIn] = useState<Boolean>(false);
 
-  const loginAction = async () => {
-    await SecureStore.setItemAsync("Authorization", "token");
-    console.log("token saved");
-    navigation.replace("Root", { screen: "Billing" });
-  };
-
-  // useEffect(() => {
-  //   const setLoginToken = async () => {
-  //     await SecureStore.setItemAsync("Authorization", "token");
-  //     console.log("token saved");
-  //     navigation.replace("Root");
-  //   };
-  //   setLoginToken();
-  // }, [loggedIn]);
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Login</Text>
       <Formik
         initialValues={{ username, password }}
         onSubmit={async (values, actions) => {
-          await loginAction()
+          try {
+            // await loginAction();
+            await SecureStore.setItemAsync("Authorization", "token");
+            console.log("token saved");
+            actions.setSubmitting(false);
+            props.navigation.replace("Root",{screen:"Billing"});
+          } catch (error) {
+            console.log(error);
+          }
           // setTimeout(() => {
           //   // setloggedIn(true);
-          //   actions.setSubmitting(false);
           // }, 500);
         }}
         validationSchema={validationSchema}>
@@ -178,10 +90,12 @@ const LogIn = ({ navigation }: any) => {
               {formikProps.touched.password && formikProps.errors.password}
             </Text>
             <TouchableOpacity
+              {...formikProps}
               onPress={() => {
                 setUsername(formikProps.values.username);
                 setPassword(formikProps.values.password);
                 formikProps.handleSubmit();
+                // navigation.replace("Root", { screen: "Billing" });
               }}
               style={styles.button}>
               <Text style={styles.buttonText}>Login</Text>

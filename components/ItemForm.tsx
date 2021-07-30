@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   ActivityIndicator,
   SafeAreaView,
@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useContext, useState } from "react";
+import { Picker } from "@react-native-picker/picker";
 import { appleBlue, lightGrey } from "../constants/DesignColors";
 import { useProductContext } from "../providers/ProductContext";
 import { Product } from "../constants/Product";
+import { useBillContext } from "../providers/BillContext";
+
 const validationSchema = yup.object().shape({
   productLabel: yup
     .string()
@@ -41,37 +43,63 @@ const validationSchema = yup.object().shape({
 });
 
 const ItemForm = () => {
+  
   const [productList, setProductList] = useProductContext();
+  const [tax, setTax] = useBillContext();
+  
+  console.log(tax);
+  const [selectedState, setSelectedState] = useState(0.05);
+
   const [product, setProduct] = useState<Product>({
     productLabel: "",
     productPrice: 0,
     quantity: 0,
   });
   return (
-    <SafeAreaView style={{ backgroundColor: "white", padding: 10 }}>
+    <SafeAreaView style={styles.Screenontainer}>
       <Formik
-        initialValues={{ productLabel: "", productPrice: 0, quantity: 0 }}
+        initialValues={{ productLabel: "", productPrice: "", quantity: "" }}
         onSubmit={(values, actions) => {
-          alert(JSON.stringify(product));
-          productList.push(product)
+          const newArray = productList;
+          newArray.unshift(product);
+          setProductList([...newArray]);
+          actions.resetForm();
           setTimeout(() => {
             actions.setSubmitting(false);
-          }, 500);
+          }, 200);
         }}
         validationSchema={validationSchema}>
         {(formikProps) => (
           <React.Fragment>
             <View style={styles.formHeader}>
               <Text style={styles.title}>Add Product</Text>
-              <Text
-                onPress={() => console.log("add Product pressed")}
-                style={styles.clickableText}>
-                State Selected :
-              </Text>
+              <Picker
+                style={{
+                  backgroundColor: String(appleBlue),
+                  width: 250,
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  color: String(appleBlue),
+                  margin: 0,
+                  padding: 0,
+                }}
+                selectedValue={selectedState}
+                onValueChange={(itemValue, itemIndex) =>{
+                  setTax(itemValue)
+                  setSelectedState(itemValue);
+                  console.log(itemValue);
+                }}>
+                <Picker.Item label='State Selected: AK - 5.0%' value="0.05" />
+                <Picker.Item label='State Selected: AL - 6.0%' value='0.06' />
+                <Picker.Item label='State Selected: AR - 3.0%' value='0.03' />
+                <Picker.Item label='State Selected: AS - 5.7%' value='0.057' />
+                <Picker.Item label='State Selected: AZ - 10.0%' value='0.1' />
+              </Picker>
             </View>
             <TextInput
               style={styles.TextInput}
               placeholder='Enter Product Label'
+              value={formikProps.values.productLabel}
               onChangeText={formikProps.handleChange("productLabel")}
             />
             <Text style={styles.errorMsg}>
@@ -79,19 +107,9 @@ const ItemForm = () => {
                 formikProps.errors.productLabel}
             </Text>
             <View
-              style={{
-                // padding: 4,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}>
+              style={[styles.container, { justifyContent: "space-between" }]}>
               <View
-                style={{
-                  // padding: 4,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "flex-start",
-                }}>
+                style={[styles.container, { justifyContent: "flex-start" }]}>
                 <View style={[styles.formHeader, { padding: 0 }]}>
                   <TextInput
                     keyboardType='numeric'
@@ -102,6 +120,7 @@ const ItemForm = () => {
                       { width: 130 },
                     ]}
                     placeholder='Enter Price'
+                    value={formikProps.values.productPrice.toString()}
                     onChangeText={formikProps.handleChange("productPrice")}
                   />
                   <TextInput
@@ -112,6 +131,7 @@ const ItemForm = () => {
                       { width: 140 },
                     ]}
                     placeholder='Enter Quantity'
+                    value={formikProps.values.quantity.toString()}
                     onChangeText={formikProps.handleChange("quantity")}
                   />
                 </View>
@@ -128,7 +148,14 @@ const ItemForm = () => {
                   <>
                     <Text
                       onPress={() => {
-                        setProduct(formikProps.values);
+                        setProduct({
+                          productLabel: formikProps.values.productLabel,
+                          productPrice: parseInt(
+                            formikProps.values.productPrice,
+                          ),
+                          quantity: parseInt(formikProps.values.quantity),
+                        });
+                        // formikProps.resetForm();
                         formikProps.handleSubmit();
                       }}
                       style={styles.clickableText}>
@@ -145,9 +172,11 @@ const ItemForm = () => {
                   : { display: "flex" }
               }>
               <Text style={styles.errorMsg}>
-                {(formikProps.touched.productPrice &&
-                  formikProps.errors.productPrice) ||
-                  (formikProps.touched.quantity && formikProps.errors.quantity)}
+                {formikProps.touched.productPrice &&
+                  formikProps.errors.productPrice}
+              </Text>
+              <Text style={styles.errorMsg}>
+                {formikProps.touched.quantity && formikProps.errors.quantity}
               </Text>
             </View>
           </React.Fragment>
@@ -158,6 +187,15 @@ const ItemForm = () => {
 };
 
 const styles = StyleSheet.create({
+  modal: {
+    // display: "flex",
+    // flexDirection: "column-reverse",
+    // justifyContent: "flex-end",
+    // alignItems: "center",
+    // maxHeight: 200,
+    backgroundColor: "blue",
+    flex: 1,
+  },
   formHeader: {
     padding: 6,
     display: "flex",
@@ -194,5 +232,15 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 12,
   },
+  container: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  Screenontainer: {
+    backgroundColor: "white",
+    padding: 10,
+    paddingBottom: 0,
+  },
 });
+
 export default ItemForm;

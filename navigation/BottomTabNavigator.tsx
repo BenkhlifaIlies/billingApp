@@ -9,10 +9,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import TabOneScreen from "../screens/BillingScreen";
-
-import TabTwoScreen from "../screens/ItemsScreen";
-import TabThreeScreen from "../screens/LogoutScreen";
+import BillingScreen from "../screens/BillingScreen";
+import ItemsScreen from "../screens/ItemsScreen";
+import LogoutScreen from "../screens/LogoutScreen";
+import DetailScreen from "../screens/DetailScreen";
 
 import {
   BottomTabParamList,
@@ -68,18 +68,15 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof Ionicons>["name"];
   color: string;
 }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={30} style={{ marginBottom: -3,paddingVertical:10 }} {...props} />;
 }
-
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const TabOneStack = createStackNavigator<TabOneParamList>();
 function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name='TabOneScreen'
-        component={TabOneScreen}
+        name='BillingScreen'
+        component={BillingScreen}
         options={{
           headerTitle: "Billing",
           headerTitleStyle: { textAlign: "center", color: "black" },
@@ -98,11 +95,22 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name='TabTwoScreen'
-        component={TabTwoScreen}
+        name='ItemsScreen'
+        component={ItemsScreen}
         options={{
           headerTitle: "Items",
           headerTitleStyle: { textAlign: "center", color: "black" },
+          headerStyle: {
+            backgroundColor: String(stackHeader),
+          },
+        }}
+      />
+       <TabTwoStack.Screen
+        name='DetailScreen'
+        component={DetailScreen}
+        options={{
+          headerTitle: "Details",
+          headerTitleStyle: {color: "black" },
           headerStyle: {
             backgroundColor: String(stackHeader),
           },
@@ -118,8 +126,8 @@ function TabThreeNavigator() {
   return (
     <TabThreeStack.Navigator>
       <TabThreeStack.Screen
-        name='TabThreeScreen'
-        component={TabThreeScreen}
+        name='LogoutScreen'
+        component={LogoutScreen}
         options={{
           headerTitle: "Log Out",
           headerTitleStyle: { textAlign: "center", color: "black" },

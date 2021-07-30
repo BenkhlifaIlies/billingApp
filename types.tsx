@@ -16,13 +16,14 @@ export type BottomTabParamList = {
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+  BillingScreen: undefined;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  ItemsScreen: undefined;
+  DetailScreen:undefined;
 };
 
 export type TabThreeParamList = {
-  TabThreeScreen: undefined;
+  LogoutScreen: undefined;
 };

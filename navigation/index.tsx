@@ -1,30 +1,18 @@
-/**
- * If you are not familiar with React Navigation, check out the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as React from "react";
-import { ColorSchemeName } from "react-native";
 import * as SecureStore from "expo-secure-store";
-import NotFoundScreen from "../screens/NotFoundScreen";
-import { RootStackParamList } from "../types";
+
 import BottomTabNavigator from "./BottomTabNavigator";
-import { useEffect, useState } from "react";
 import LogIn from "../screens/LogIn";
+import NotFoundScreen from "../screens/NotFoundScreen";
+
+import { RootStackParamList } from "../types";
 import { ProductProvider } from "../providers/ProductContext";
+import { BillProvider } from "../providers/BillContext";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}) {
+export default function Navigation({ navigation }: any) {
   const [token, setToken] = useState<null | string>(null);
-
-  // const [productList, setProductList] = useState<Product[]>([]);
-  // const prodctsContetxt = { productList, setProductList };
-
   useEffect(() => {
     const checkToken = async () => {
       const getToken = await SecureStore.getItemAsync("Authorization");
@@ -34,13 +22,18 @@ export default function Navigation({
   }, []);
 
   return (
-    <NavigationContainer>
-      {token ? (
-      <ProductProvider>
-        <RootNavigator /> 
-      </ProductProvider> 
-      ): <LogIn />}
-    </NavigationContainer>
+   <NavigationContainer>
+      {token !== null ? (
+        <ProductProvider>
+          <BillProvider>
+            <RootNavigator />
+          </BillProvider>
+        </ProductProvider>
+      ) : (
+        <AuthStackScreen />
+        // <LogIn />
+      )}
+     </NavigationContainer>
   );
 }
 
@@ -59,3 +52,10 @@ function RootNavigator() {
     </Stack.Navigator>
   );
 }
+const AuthStack = createStackNavigator();
+const AuthStackScreen = () => (
+  <AuthStack.Navigator>
+    <AuthStack.Screen name="LogIn" component={LogIn} />
+    <Stack.Screen name='Root' component={BottomTabNavigator} />
+  </AuthStack.Navigator>
+);
