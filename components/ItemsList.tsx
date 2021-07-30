@@ -3,8 +3,15 @@ import { StyleSheet, ScrollView, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import { lightGrey } from "../constants/DesignColors";
 import { useProductContext } from "../providers/ProductContext";
+
 const initialEmptyPlaceHolderLength = 9;
 
+  const calculateTotalPrice = (
+    quantity: number,
+    productPrice: number,
+  ): number => {
+    return quantity * productPrice;
+  };
 const ItemsList = () => {
   const [productList] = useProductContext();
   const [initialEmptyPlaceHolder] = useState(
@@ -33,7 +40,7 @@ const ItemsList = () => {
           <DataTable.Cell numeric>{product.quantity}</DataTable.Cell>
           <DataTable.Cell numeric>{"$" + product.productPrice}</DataTable.Cell>
           <DataTable.Cell numeric>
-            {"$" + product.quantity * product.productPrice}
+            {"$" + calculateTotalPrice(product.quantity, product.productPrice)}
           </DataTable.Cell>
         </DataTable.Row>
       );
@@ -54,7 +61,6 @@ const ItemsList = () => {
       </DataTable>
     </ScrollView>
   );
-  
 };
 
 const styles = StyleSheet.create({
@@ -68,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ItemsList;
+export {calculateTotalPrice,ItemsList} ;

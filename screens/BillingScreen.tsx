@@ -1,11 +1,11 @@
 import * as React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 
-import BillCalculator from "../components/BillCalculator";
+import {BillCalculator} from "../components/BillCalculator";
 import ItemForm from "../components/ItemForm";
-import ItemsList from "../components/ItemsList";
+import {ItemsList} from "../components/ItemsList";
 
-export default function BillingScreen() {
+const  BillingScreen=() =>{
   return (
     <SafeAreaView style={styles.container}>
       <ItemForm />
@@ -25,3 +25,5 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
 });
+
+export default BillingScreen

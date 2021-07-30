@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\theil\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/react-native-modal-selector
+  C:\Program Files\nodejs\node.exe C:\Users\theil\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev jest jest-expo @testing-library/react-native reac-test-renderer
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\theil\bin;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\AdoptOpenJDK\jdk-11.0.9.11-hotspot\bin;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files\Java\jdk-15.0.1\bin;D:\Apps\apache-ant-1.9.15\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Gradle\gradle-6.8.2\bin;C:\Users\theil\AppData\Roaming\npm;C:\Users\theil\AppData\Local\Microsoft\WindowsApps;C:\Microsoft VS Code\bin;C:\Users\theil\AppData\Roaming\npm;C:\Program Files\JetBrains\PyCharm Community Edition 2020.2.3\bin;D:\Apps\apache-maven-3.6.3\bin;D:\Apps\sonar-scanner-4.5.0.2216-windows\bin;C:\Program Files\Java\jdk-15.0.1\bin;D:\Apps;D:\Apps\sonar-scanner-4.5.0.2216-windows\jre\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3\bin;C:\Program Files\JetBrains\DataGrip 2020.1.2\bin;C:\Users\theil\AppData\Local\Android\Sdk\platform-tools
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\theil\bin;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\AdoptOpenJDK\jdk-11.0.9.11-hotspot\bin;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files\Java\jdk-15.0.1\bin;D:\Apps\apache-ant-1.9.15\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Gradle\gradle-6.8.2\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Roaming\npm;C:\Users\theil\AppData\Local\Microsoft\WindowsApps;C:\Microsoft VS Code\bin;C:\Users\theil\AppData\Roaming\npm;C:\Program Files\JetBrains\PyCharm Community Edition 2020.2.3\bin;D:\Apps\apache-maven-3.6.3\bin;D:\Apps\sonar-scanner-4.5.0.2216-windows\bin;C:\Program Files\Java\jdk-15.0.1\bin;D:\Apps;D:\Apps\sonar-scanner-4.5.0.2216-windows\jre\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3\bin;C:\Program Files\JetBrains\DataGrip 2020.1.2\bin;C:\Users\theil\AppData\Local\Android\Sdk\platform-tools
 
 Yarn version: 
   1.22.10
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-native-modal-selector: Not found
+  Error: https://registry.yarnpkg.com/reac-test-renderer: Not found
       at Request.params.callback [as _callback] (C:\Users\theil\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
       at Request.self.callback (C:\Users\theil\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
       at Request.emit (events.js:314:20)
@@ -43,6 +43,7 @@ npm manifest:
     "dependencies": {
       "@expo/vector-icons": "^12.0.0",
       "@react-native-community/masked-view": "0.1.10",
+      "@react-native-picker/picker": "^1.16.4",
       "@react-navigation/bottom-tabs": "5.11.2",
       "@react-navigation/native": "~5.8.10",
       "@react-navigation/stack": "~5.12.8",
@@ -61,7 +62,6 @@ npm manifest:
       "react-dom": "16.13.1",
       "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
       "react-native-gesture-handler": "~1.10.2",
-      "react-native-modal-selector": "^2.0.7",
       "react-native-paper": "^4.9.2",
       "react-native-reanimated": "~2.2.0",
       "react-native-safe-area-context": "3.2.0",
@@ -2218,6 +2218,11 @@ Lockfile:
     version "0.1.10"
     resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
     integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
+  
+  "@react-native-picker/picker@^1.16.4":
+    version "1.16.4"
+    resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.16.4.tgz#85712375dbf0a38e8c20ee1b2d71253c0a1cd520"
+    integrity sha512-V/8XNlTU3QJ/mdY+mCQnuCCZJfIOpgfSnfFDinftWDi66mGuf6tRd+sfCOeKqjug38sdJm9CeNry/66W0EYodw==
   
   "@react-navigation/bottom-tabs@5.11.2":
     version "5.11.2"
@@ -6956,7 +6961,7 @@ Lockfile:
       kleur "^3.0.3"
       sisteransi "^1.0.5"
   
-  prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -7087,13 +7092,6 @@ Lockfile:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
     integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
-  
-  react-native-modal-selector@^2.0.7:
-    version "2.0.7"
-    resolved "https://registry.yarnpkg.com/react-native-modal-selector/-/react-native-modal-selector-2.0.7.tgz#3f7044d424c2ac3b8a7e7e53fbe88648c4f0308a"
-    integrity sha512-XcXewAN9RSnoHxM0y3jFQ33KXp2NyELUW6VDZ0aB3EaJzDEJSYM+6ANSemgjVpsJOINMECerTf9i0HnMvvD5FQ==
-    dependencies:
-      prop-types "^15.5.10"
   
   react-native-paper@^4.9.2:
     version "4.9.2"

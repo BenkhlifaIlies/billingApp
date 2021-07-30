@@ -7,7 +7,27 @@ import { useProductContext } from "../providers/ProductContext";
 
 import { DISCOUNT } from "../constants/Calculattions";
 import { Product } from "../constants/Product";
+const calculateDiscount = (
+  DISCOUNT: number,
+  totalPriceWithoutTax: number,
+): number => {
+  return DISCOUNT * totalPriceWithoutTax;
+};
 
+const calculateTax = (tax: number, totalPriceWithoutTax: number): number => {
+  return tax * totalPriceWithoutTax;
+};
+const TotalPriceWithTax = (
+  totalPriceWithoutTax: number,
+  tax: number,
+  DISCOUNT: number,
+): number => {
+  return (
+    totalPriceWithoutTax +
+    tax * totalPriceWithoutTax -
+    DISCOUNT * totalPriceWithoutTax
+  );
+};
 const BillCalculator = () => {
   const [productList] = useProductContext();
   const [tax] = useBillContext();
@@ -27,18 +47,19 @@ const BillCalculator = () => {
     },
     0,
   );
-  const discountText = `${(DISCOUNT * 100).toFixed(1)}%: $${(
-    DISCOUNT * totalPriceWithoutTax
-  ).toFixed(2)}`;
-  const taxText = `${(tax * 100).toFixed(1)} %: $${(
-    tax * totalPriceWithoutTax
-  ).toFixed(2)}`;
-  const TotalPriceWithTax = (
-    totalPriceWithoutTax +
-    tax * totalPriceWithoutTax -
-    DISCOUNT * totalPriceWithoutTax
-  ).toFixed(2);
 
+  const totalPriceWithTaxText = `Total price: $${TotalPriceWithTax(
+    totalPriceWithoutTax,
+    tax,
+    DISCOUNT,
+  ).toFixed(2)}`;
+  const taxText = `Tax ${(tax * 100).toFixed(1)}%: $${calculateTax(
+    tax,
+    totalPriceWithoutTax,
+  ).toFixed(2)}`;
+  const discountText = `Discount ${(DISCOUNT * 100).toFixed(
+    1,
+  )}%: $${calculateDiscount(DISCOUNT, totalPriceWithoutTax).toFixed(2)}`;
   return (
     <View
       style={[
@@ -47,12 +68,17 @@ const BillCalculator = () => {
           display: footerVisibility ? "flex" : "none",
         },
       ]}>
-      <Text style={styles.billDeyail}>
+      <Text style={styles.billDetail}>
         Total price without tax: ${totalPriceWithoutTax}
       </Text>
-      <Text style={styles.billDeyail}>Discount {discountText}</Text>
-      <Text style={styles.billDeyail}>Tax {taxText}</Text>
-      <Text style={styles.billDeyail}>Total price: ${TotalPriceWithTax}</Text>
+      <Text style={styles.billDetail}>
+        Discount ${(DISCOUNT * 100).toFixed(1)}%: ${" "}
+        {calculateDiscount(DISCOUNT, totalPriceWithoutTax).toFixed(2)}
+      </Text>
+      <Text style={styles.billDetail}>{taxText}</Text>
+      <Text style={[styles.billDetail, styles.totalPrice]}>
+        {totalPriceWithTaxText}
+      </Text>
     </View>
   );
 };
@@ -62,9 +88,12 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
   },
-  billDeyail: {
+  billDetail: {
     fontSize: 16,
     marginVertical: 10,
   },
+  totalPrice: {
+    fontWeight: "bold",
+  },
 });
-export default BillCalculator;
+export { BillCalculator, TotalPriceWithTax, calculateTax, calculateDiscount };

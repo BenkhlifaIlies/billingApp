@@ -8,18 +8,19 @@ import {
   Text,
 } from "react-native";
 import { Formik } from "formik";
-import * as yup from "yup";
 import { Picker } from "@react-native-picker/picker";
+import * as yup from "yup";
 import { appleBlue, lightGrey } from "../constants/DesignColors";
 import { useProductContext } from "../providers/ProductContext";
 import { useBillContext } from "../providers/BillContext";
+import { MAXQUANTITY } from "../constants/Calculattions";
 
 const validationSchema = yup.object().shape({
   productLabel: yup
     .string()
     .required()
     .label("Product")
-    .min(4, "type the full product's name, please"),
+    .min(4, "Product's name is required to be at least 4 characters long"),
   productPrice: yup
     .number()
     .required()
@@ -36,22 +37,27 @@ const validationSchema = yup.object().shape({
     .label("Quantity")
     .test(
       "Is positive?",
-      "Quantity must be greater than or equal to  1 and inferieur to 8",
-      (value: any) => value >= 1 && value < 8,
+      "Quantity must be greater than or equal to  1 and inferieur to" +
+        MAXQUANTITY,
+      (value: any) => value >= 1 && value < MAXQUANTITY,
     ),
 });
 
 const ItemForm = () => {
   const [productList, setProductList] = useProductContext();
   const [tax, setTax] = useBillContext();
-  
-  const handleInsertion = (values:any) => {
+
+  const handleInsertion = (
+    productLabel: string,
+    productPrice: number,
+    quantity: number,
+  ) => {
     const newArray = productList;
     try {
       newArray.unshift({
-        productLabel: values.productLabel,
-        productPrice: Number(values.productPrice),
-        quantity: Number(values.quantity),
+        productLabel: productLabel,
+        productPrice: productPrice,
+        quantity: quantity,
       });
       setProductList([...newArray]);
     } catch (error) {
@@ -63,7 +69,11 @@ const ItemForm = () => {
       <Formik
         initialValues={{ productLabel: "", productPrice: "", quantity: "" }}
         onSubmit={(values, actions) => {
-          handleInsertion(values)
+          handleInsertion(
+            values.productLabel,
+            Number(values.productPrice),
+            Number(values.quantity),
+          );
           actions.resetForm();
           setTimeout(() => {
             actions.setSubmitting(false);
@@ -87,9 +97,8 @@ const ItemForm = () => {
                 selectedValue={tax}
                 onValueChange={(itemValue, itemIndex) => {
                   setTax(itemValue);
-                  // setSelectedState(itemValue);
-                  console.log(itemValue);
                 }}>
+                {/* hard coded taxes */}
                 <Picker.Item label='State Selected: AK - 5.0%' value='0.05' />
                 <Picker.Item label='State Selected: AL - 6.0%' value='0.06' />
                 <Picker.Item label='State Selected: AR - 3.0%' value='0.03' />
