@@ -5,9 +5,9 @@ const DetailsScreen = ({ route }: any) => {
   const { item } = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.centred}>{item.productLabel} </Text>
-      <Text style={styles.centred}>{item.productPrice} </Text>
-      <Text style={styles.centred}>{item.quantity} </Text>
+      <Text style={styles.centred}>Product name: {item.productLabel} </Text>
+      <Text style={styles.centred}>Unit price: ${item.productPrice} </Text>
+      <Text style={styles.centred}>Quantity: {item.quantity} </Text>
     </View>
   );
 };

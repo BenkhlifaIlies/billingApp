@@ -1,21 +1,22 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import ItemForm from '../ItemForm';
-import { Picker } from "@react-native-picker/picker";
+import React from "react";
+import renderer from "react-test-renderer";
 
-test('renders correctly', () => {
-  const tree = renderer.create(<ItemForm />).toJSON();
+import ItemForm from "../ItemForm";
+
+import { BillProvider } from "../../providers/BillContext";
+import { ProductProvider } from "../../providers/ProductContext";
+
+test("renders correctly", () => {
+  const tree = renderer
+    .create(
+      <ProductProvider>
+        <BillProvider>
+          <ItemForm />
+        </BillProvider>
+      </ProductProvider>,
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-// jest.mock('Picker', () => {
-//     const Picker = class extends Component {
-//       static Item = props => React.createElement('Item', props, props.children);
-//       static propTypes = { children: React.PropTypes.any };
-  
-//       render() {
-//         return React.createElement('Picker', this.props, this.props.children);
-//       }
-//     }
-//     return Picker;
-//   })
+

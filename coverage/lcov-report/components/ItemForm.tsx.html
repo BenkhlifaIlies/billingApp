@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.05% </span>
+                <span class="strong">38.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/21</span>
+                <span class='fraction'>8/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">41.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>5/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">22.22% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>2/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.05% </span>
+                <span class="strong">38.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/21</span>
+                <span class='fraction'>8/21</span>
             </div>
         
             
@@ -343,31 +343,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -380,6 +358,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -582,9 +582,9 @@ const validationSchema = yup.object().shape({
 &nbsp;
 const ItemForm = () =&gt; {
   const [productList, setProductList] = useProductContext();
-  const [tax, setTax] = <span class="cstat-no" title="statement not covered" >useBillContext();</span>
+  const [tax, setTax] = useBillContext();
 &nbsp;
-  const handleInsertion = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span>
+  const handleInsertion = <span class="fstat-no" title="function not covered" >(</span>
     productLabel: string,
     productPrice: number,
     quantity: number,
@@ -601,7 +601,7 @@ const ItemForm = () =&gt; {
 <span class="cstat-no" title="statement not covered" >      console.log(error);</span>
     }
   };
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;SafeAreaView style={styles.Screenontainer}&gt;
       &lt;Formik
         initialValues={{ productLabel: "", productPrice: "", quantity: "" }}
@@ -617,8 +617,8 @@ const ItemForm = () =&gt; {
           }, 200);
         }}
         validationSchema={validationSchema}&gt;
-        {<span class="fstat-no" title="function not covered" >(f</span>ormikProps) =&gt; (
-<span class="cstat-no" title="statement not covered" >          &lt;React.Fragment&gt;</span>
+        {(formikProps) =&gt; (
+          &lt;React.Fragment&gt;
             &lt;View style={styles.formHeader}&gt;
               &lt;Text style={styles.title}&gt;Add Product&lt;/Text&gt;
               &lt;Picker
@@ -651,7 +651,7 @@ const ItemForm = () =&gt; {
             /&gt;
             &lt;Text style={styles.errorMsg}&gt;
               {formikProps.touched.productLabel &amp;&amp;
-                formikProps.errors.productLabel}
+<span class="branch-1 cbranch-no" title="branch not covered" >                formikProps.errors.productLabel}</span>
             &lt;/Text&gt;
             &lt;View
               style={[styles.container, { justifyContent: "space-between" }]}&gt;
@@ -690,7 +690,7 @@ const ItemForm = () =&gt; {
                   justifyContent: "center",
                 }}&gt;
                 {formikProps.isSubmitting ? (
-                  &lt;ActivityIndicator color={appleBlue} /&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >                  &lt;ActivityIndicator color={appleBlue} /&gt;</span>
                 ) : (
                   &lt;&gt;
                     &lt;Text
@@ -707,15 +707,15 @@ const ItemForm = () =&gt; {
             &lt;View
               style={
                 !!!formikProps.errors
-                  ? { display: "none" }
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >{ display: "none" }</span>
                   : { display: "flex" }
               }&gt;
               &lt;Text style={styles.errorMsg}&gt;
                 {formikProps.touched.productPrice &amp;&amp;
-                  formikProps.errors.productPrice}
+<span class="branch-1 cbranch-no" title="branch not covered" >                  formikProps.errors.productPrice}</span>
               &lt;/Text&gt;
               &lt;Text style={styles.errorMsg}&gt;
-                {formikProps.touched.quantity &amp;&amp; formikProps.errors.quantity}
+                {formikProps.touched.quantity &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >formikProps.errors.quantity}</span>
               &lt;/Text&gt;
             &lt;/View&gt;
           &lt;/React.Fragment&gt;
@@ -781,7 +781,7 @@ export default ItemForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jul 30 2021 23:06:36 GMT+0100 (Central European Standard Time)
+                at Sun Aug 01 2021 16:47:35 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

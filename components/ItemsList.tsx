@@ -5,35 +5,40 @@ import { lightGrey } from "../constants/DesignColors";
 import { Product } from "../constants/Product";
 import { useProductContext } from "../providers/ProductContext";
 
-const initialEmptyPlaceHolderLength = 9;
+const initialEmptyPlaceHolderLength = 7;
 
-  const calculateTotalPrice = (
-    quantity: number,
-    productPrice: number,
-  ): number => {
-    return quantity * productPrice;
-  };
+const calculateTotalPrice = (
+  quantity: number,
+  productPrice: number,
+): number => {
+  return quantity * productPrice;
+};
+
 const ItemsList = () => {
   const [productList] = useProductContext();
+
   const [initialEmptyPlaceHolder] = useState(
     new Array(initialEmptyPlaceHolderLength),
   );
 
-  const renderListItems = (productList:Product[]) => {
-    let i = 1;
-    const t = Array.apply(
+  const renderListItems = (productList: Product[]) => {
+    //since the list doesn't have an id attributte
+    let key = 1;
+    //mimic the initial placeholders
+    const placeholder = Array.apply(
       null,
       initialEmptyPlaceHolder.slice(productList.length),
     ).map(function () {
       return (
-        <DataTable.Row style={styles.tableRow} key={i++}>
+        <DataTable.Row style={styles.tableRow} key={key++}>
           <></>
         </DataTable.Row>
       );
     });
-    const result = productList.map((product) => {
+   //rendering actual items
+    const items = productList.map((product) => {
       return (
-        <DataTable.Row style={styles.tableRow} key={i++}>
+        <DataTable.Row style={styles.tableRow} key={key++}>
           <DataTable.Cell>
             {product.productLabel.trim().charAt(0).toUpperCase() +
               product.productLabel.trim().slice(1)}
@@ -46,7 +51,8 @@ const ItemsList = () => {
         </DataTable.Row>
       );
     });
-    return result.concat(t);
+    // render actual items + remaining place holders
+    return items.concat(placeholder);
   };
 
   return (
@@ -58,7 +64,9 @@ const ItemsList = () => {
           <DataTable.Title numeric>Price</DataTable.Title>
           <DataTable.Title numeric>Total Price</DataTable.Title>
         </DataTable.Header>
-        <ScrollView style={styles.container}>{renderListItems(productList)}</ScrollView>
+        <ScrollView style={styles.container}>
+          {renderListItems(productList)}
+        </ScrollView>
       </DataTable>
     </ScrollView>
   );
@@ -75,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {calculateTotalPrice,ItemsList} ;
+export { calculateTotalPrice, ItemsList };
