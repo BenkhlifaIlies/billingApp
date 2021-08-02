@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ActivityIndicator,
-  SafeAreaView,
   StyleSheet,
   TextInput,
   View,
@@ -64,9 +63,10 @@ const ItemForm = () => {
       console.log(error);
     }
   };
+
   return (
-    <SafeAreaView style={styles.Screenontainer}>
-      <Formik
+    <View style={styles.Screenontainer}>
+       <Formik
         initialValues={{ productLabel: "", productPrice: "", quantity: "" }}
         onSubmit={(values, actions) => {
           handleInsertion(
@@ -85,6 +85,7 @@ const ItemForm = () => {
             <View style={styles.formHeader}>
               <Text style={styles.title}>Add Product</Text>
               <Picker
+                // testID="tax-picker"
                 style={{
                   backgroundColor: String(appleBlue),
                   width: 250,
@@ -184,7 +185,7 @@ const ItemForm = () => {
           </React.Fragment>
         )}
       </Formik>
-    </SafeAreaView>
+    </View> 
   );
 };
 

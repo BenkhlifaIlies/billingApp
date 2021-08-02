@@ -14,8 +14,7 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "white",
@@ -287,7 +286,7 @@ exports[`renders correctly 1`] = `
         }
       />
     </View>
-  </RCTSafeAreaView>
+  </View>
   <RCTScrollView>
     <View>
       <View
@@ -844,6 +843,7 @@ exports[`renders correctly 1`] = `
         Array [
           Object {
             "backgroundColor": "white",
+            "bottom": 0,
             "padding": 10,
           },
           Object {
@@ -872,11 +872,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      Discount $
-      3.0
-      %: $
-       
-      0.00
+      Discount 3.0%: $0.00
     </Text>
     <Text
       style={

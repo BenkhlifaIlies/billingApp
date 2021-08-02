@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   TextInput,
   TouchableOpacity,
 } from "react-native";
@@ -65,7 +66,7 @@ const LogIn = ({ ...props }: any) => {
   }, [loggedIn]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>Login</Text>
       <Formik
         initialValues={{ username, password }}
@@ -105,7 +106,7 @@ const LogIn = ({ ...props }: any) => {
           </React.Fragment>
         )}
       </Formik>
-    </View>
+    </SafeAreaView>
   );
 };
 

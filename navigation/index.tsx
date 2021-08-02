@@ -10,7 +10,7 @@ import { RootStackParamList } from "../types";
 import { ProductProvider } from "../providers/ProductContext";
 import { BillProvider } from "../providers/BillContext";
 
-import {useAuthContext } from "../providers/AuthContext";
+import { useAuthContext } from "../providers/AuthContext";
 
 export default function Navigation({ colorScheme }: any) {
   const [token, setToken] = useAuthContext();
@@ -34,7 +34,7 @@ export default function Navigation({ colorScheme }: any) {
       {token !== null ? (
         <ProductProvider>
           <BillProvider>
-          <RootNavigator />
+            <RootNavigator />
           </BillProvider>
         </ProductProvider>
       ) : (
@@ -60,7 +60,10 @@ function RootNavigator() {
 }
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
+  <AuthStack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}>
     <AuthStack.Screen name='LogIn' component={LogIn} />
   </AuthStack.Navigator>
 );

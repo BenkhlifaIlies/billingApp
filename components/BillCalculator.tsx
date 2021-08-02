@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, Keyboard } from "react-native";
 import { View } from "./Themed";
 
@@ -7,6 +7,13 @@ import { useProductContext } from "../providers/ProductContext";
 
 import { DISCOUNT } from "../constants/Calculattions";
 import { Product } from "../constants/Product";
+
+const calculateTotalPriceWithoutTax = (productList: Product[]) => {
+  return productList.reduce((total: number, item: Product) => {
+    return total + item.productPrice * item.quantity;
+  }, 0);
+};
+
 const calculateDiscount = (
   DISCOUNT: number,
   totalPriceWithoutTax: number,
@@ -17,7 +24,7 @@ const calculateDiscount = (
 const calculateTax = (tax: number, totalPriceWithoutTax: number): number => {
   return tax * totalPriceWithoutTax;
 };
-const TotalPriceWithTax = (
+const calculatetotalPriceWithTax = (
   totalPriceWithoutTax: number,
   tax: number,
   DISCOUNT: number,
@@ -28,27 +35,35 @@ const TotalPriceWithTax = (
     DISCOUNT * totalPriceWithoutTax
   );
 };
+
 const BillCalculator = () => {
   const [productList] = useProductContext();
   const [tax] = useBillContext();
 
-  const [footerVisibility, setFooterVisibility] = useState(true);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
-  Keyboard.addListener("keyboardDidShow", () => {
-    setFooterVisibility(false);
-  });
-  Keyboard.addListener("keyboardDidHide", () => {
-    setFooterVisibility(true);
-  });
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      },
+    );
 
-  const totalPriceWithoutTax = productList.reduce(
-    (total: number, item: Product) => {
-      return total + item.productPrice * item.quantity;
-    },
-    0,
-  );
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
-  const totalPriceWithTaxText = `Total price: $${TotalPriceWithTax(
+  const totalPriceWithoutTax = calculateTotalPriceWithoutTax(productList);
+  const calculatetotalPriceWithTaxText = `Total price: $${calculatetotalPriceWithTax(
     totalPriceWithoutTax,
     tax,
     DISCOUNT,
@@ -65,19 +80,16 @@ const BillCalculator = () => {
       style={[
         styles.footerContainer,
         {
-          display: footerVisibility ? "flex" : "none",
+          display: !isKeyboardVisible ? "flex" : "none",
         },
       ]}>
       <Text style={styles.billDetail}>
         Total price without tax: ${totalPriceWithoutTax}
       </Text>
-      <Text style={styles.billDetail}>
-        Discount ${(DISCOUNT * 100).toFixed(1)}%: ${" "}
-        {calculateDiscount(DISCOUNT, totalPriceWithoutTax).toFixed(2)}
-      </Text>
+      <Text style={styles.billDetail}>{discountText}</Text>
       <Text style={styles.billDetail}>{taxText}</Text>
       <Text style={[styles.billDetail, styles.totalPrice]}>
-        {totalPriceWithTaxText}
+        {calculatetotalPriceWithTaxText}
       </Text>
     </View>
   );
@@ -85,6 +97,10 @@ const BillCalculator = () => {
 
 const styles = StyleSheet.create({
   footerContainer: {
+    // flex:1,
+    // width:"100%",
+    // position: "absolute",
+    bottom: 0,
     padding: 10,
     backgroundColor: "white",
   },
@@ -96,4 +112,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export { BillCalculator, TotalPriceWithTax, calculateTax, calculateDiscount };
+export {
+  BillCalculator,
+  calculateTotalPriceWithoutTax,
+  calculateDiscount,
+  calculateTax,
+  calculatetotalPriceWithTax,
+};
