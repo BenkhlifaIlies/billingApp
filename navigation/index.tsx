@@ -1,52 +1,35 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as SecureStore from "expo-secure-store";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import LogIn from "../screens/LogIn";
 import NotFoundScreen from "../screens/NotFoundScreen";
 
-import { RootStackParamList } from "../types";
+import { AuthStackParamList, RootStackParamList } from "../types";
 import { ProductProvider } from "../providers/ProductContext";
 import { BillProvider } from "../providers/BillContext";
 
 import { useAuthContext } from "../providers/AuthContext";
 
 export default function Navigation({ colorScheme }: any) {
-  const [token, setToken] = useAuthContext();
-
-  useEffect(() => {
-    const checkToken = async () => {
-      try {
-        const getToken = await SecureStore.getItemAsync("Authorization");
-        setToken(getToken);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const ac = new AbortController();
-    checkToken();
-    return () => ac.abort();
-  }, [token]);
-
+  const [token] = useAuthContext();
   return (
     <>
-      {token !== null ? (
+      {token === null ? (
+        <AuthStackScreen />
+      ) : (
         <ProductProvider>
           <BillProvider>
             <RootNavigator />
           </BillProvider>
         </ProductProvider>
-      ) : (
-        <AuthStackScreen />
       )}
     </>
   );
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
-
-function RootNavigator() {
+const RootNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Root' component={BottomTabNavigator} />
@@ -57,13 +40,14 @@ function RootNavigator() {
       />
     </Stack.Navigator>
   );
-}
-const AuthStack = createStackNavigator();
+};
+
+const AuthStack = createStackNavigator<AuthStackParamList>();
 const AuthStackScreen = () => (
   <AuthStack.Navigator
     screenOptions={{
       headerShown: false,
     }}>
-    <AuthStack.Screen name='LogIn' component={LogIn} />
+    <AuthStack.Screen name='Login' component={LogIn} />
   </AuthStack.Navigator>
 );

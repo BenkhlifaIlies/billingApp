@@ -1,15 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { configure, shallow } from "enzyme";
+// import { render, fireEvent, act } from "@testing-library/react-native";
 
 import ItemForm from "../ItemForm";
 
 import { BillProvider } from "../../providers/BillContext";
 import { ProductProvider } from "../../providers/ProductContext";
-
-import Adapter from "enzyme-adapter-react-16";
-
-configure({ adapter: new Adapter() });
 
 test("renders correctly", () => {
   const tree = renderer
@@ -23,3 +19,4 @@ test("renders correctly", () => {
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+

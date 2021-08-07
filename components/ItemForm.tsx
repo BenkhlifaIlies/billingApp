@@ -96,7 +96,7 @@ const ItemForm = () => {
                   padding: 0,
                 }}
                 selectedValue={tax}
-                onValueChange={(itemValue, itemIndex) => {
+                onValueChange={(itemValue) => {
                   setTax(itemValue);
                 }}>
                 {/* hard coded taxes */}
