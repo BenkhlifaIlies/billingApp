@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import * as SecureStore from "expo-secure-store";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import LogIn from "../screens/LogIn";
@@ -10,22 +11,42 @@ import { ProductProvider } from "../providers/ProductContext";
 import { BillProvider } from "../providers/BillContext";
 
 import { useAuthContext } from "../providers/AuthContext";
+import useCachedResources from "../hooks/useCachedResources";
 
 export default function Navigation({ colorScheme }: any) {
-  const [token] = useAuthContext();
-  return (
-    <>
-      {token === null ? (
-        <AuthStackScreen />
-      ) : (
-        <ProductProvider>
-          <BillProvider>
-            <RootNavigator />
-          </BillProvider>
-        </ProductProvider>
-      )}
-    </>
-  );
+  const [token, setToken] = useAuthContext();
+  let isLoadingComplete = useCachedResources();
+
+  useEffect(() => {
+    async function loadUserToken() {
+      try {
+        const userToken = await SecureStore.getItemAsync("Authorization");
+        setToken(userToken);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    loadUserToken();
+  }, [token]);
+
+  if (!isLoadingComplete) {
+    return null;
+  } else {
+    return (
+      <>
+        {token == null ? (
+          <AuthStackScreen />
+        ) : (
+          <ProductProvider>
+            <BillProvider>
+              <RootNavigator />
+            </BillProvider>
+          </ProductProvider>
+        )}
+      </>
+    );
+  }
 }
 
 const Stack = createStackNavigator<RootStackParamList>();

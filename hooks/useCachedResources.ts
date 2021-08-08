@@ -1,15 +1,17 @@
-import { Ionicons } from "@expo/vector-icons";
-import * as Font from "expo-font";
+import React, { useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import React ,{ useEffect, useState } from "react";
+import * as SecureStore from "expo-secure-store";
+import * as Font from "expo-font";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
+        await SecureStore.getItemAsync("Authorization");
+
         await Font.loadAsync({
           ...Ionicons.font,
           "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -25,5 +27,5 @@ export default function useCachedResources() {
     loadResourcesAndDataAsync();
   }, []);
 
-  return isLoadingComplete;
+  return isLoadingComplete
 }
