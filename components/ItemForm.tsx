@@ -26,7 +26,7 @@ const validationSchema = yup.object().shape({
     .label("Price")
     .test(
       "Is positive?",
-      "The Price must be greater than 0",
+      "The Price must be a positive number",
       (value: any) => value > 0,
     )
     .typeError("The Price must be a positive number"),
@@ -36,9 +36,13 @@ const validationSchema = yup.object().shape({
     .label("Quantity")
     .test(
       "Is positive?",
-      "Quantity must be greater than or equal to  1 and inferieur to" +
+      "Quantity must be greater than or equal to  1 and inferieur to " +
         MAXQUANTITY,
       (value: any) => value >= 1 && value < MAXQUANTITY,
+    )
+    .typeError(
+      "Quantity must be greater than or equal to  1 and inferieur to " +
+        MAXQUANTITY,
     ),
 });
 
@@ -60,13 +64,13 @@ const ItemForm = () => {
       });
       setProductList([...newArray]);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 
   return (
     <View style={styles.Screenontainer}>
-       <Formik
+      <Formik
         initialValues={{ productLabel: "", productPrice: "", quantity: "" }}
         onSubmit={(values, actions) => {
           handleInsertion(
@@ -75,9 +79,6 @@ const ItemForm = () => {
             Number(values.quantity),
           );
           actions.resetForm();
-          setTimeout(() => {
-            actions.setSubmitting(false);
-          }, 200);
         }}
         validationSchema={validationSchema}>
         {(formikProps) => (
@@ -185,7 +186,7 @@ const ItemForm = () => {
           </React.Fragment>
         )}
       </Formik>
-    </View> 
+    </View>
   );
 };
 

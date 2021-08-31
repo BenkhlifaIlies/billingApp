@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1627858237291" clover="3.2.0">
-  <project timestamp="1627858237291" name="All files">
-    <metrics statements="91" coveredstatements="74" conditionals="16" coveredconditionals="7" methods="34" coveredmethods="24" elements="141" coveredelements="105" complexity="0" loc="91" ncloc="91" packages="5" files="12" classes="12"/>
+<coverage generated="1630429798223" clover="3.2.0">
+  <project timestamp="1630429798223" name="All files">
+    <metrics statements="93" coveredstatements="85" conditionals="16" coveredconditionals="13" methods="35" coveredmethods="30" elements="144" coveredelements="128" complexity="0" loc="93" ncloc="93" packages="5" files="12" classes="12"/>
     <package name="components">
-      <metrics statements="71" coveredstatements="54" conditionals="16" coveredconditionals="7" methods="26" coveredmethods="16"/>
+      <metrics statements="73" coveredstatements="65" conditionals="16" coveredconditionals="13" methods="27" coveredmethods="22"/>
       <file name="BillCalculator.tsx" path="D:\Projects\billingapp\billingapp\components\BillCalculator.tsx">
-        <metrics statements="23" coveredstatements="21" conditionals="2" coveredconditionals="1" methods="8" coveredmethods="6"/>
+        <metrics statements="27" coveredstatements="23" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="7"/>
         <line num="11" count="2" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
-        <line num="21" count="5" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
         <line num="25" count="3" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
         <line num="32" count="3" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
         <line num="40" count="2" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
-        <line num="44" count="2" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="47" count="2" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
-        <line num="59" count="2" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="68" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
         <line num="71" count="2" type="stmt"/>
-        <line num="94" count="2" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
       </file>
       <file name="ItemForm.tsx" path="D:\Projects\billingapp\billingapp\components\ItemForm.tsx">
-        <metrics statements="21" coveredstatements="8" conditionals="12" coveredconditionals="5" methods="9" coveredmethods="2"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="84" count="1" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="161" count="0" type="stmt"/>
-        <line num="191" count="1" type="stmt"/>
+        <metrics statements="19" coveredstatements="17" conditionals="12" coveredconditionals="11" methods="8" coveredmethods="7"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="41" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="50" count="6" type="stmt"/>
+        <line num="51" count="6" type="stmt"/>
+        <line num="53" count="6" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="71" count="6" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="85" count="36" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="163" count="3" type="stmt"/>
+        <line num="193" count="3" type="stmt"/>
       </file>
       <file name="ItemsList.tsx" path="D:\Projects\billingapp\billingapp\components\ItemsList.tsx">
         <metrics statements="15" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
@@ -70,7 +72,7 @@
         <line num="40" count="0" type="stmt"/>
         <line num="55" count="2" type="stmt"/>
         <line num="58" count="2" type="stmt"/>
-        <line num="75" count="2" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
       </file>
       <file name="StyledText.tsx" path="D:\Projects\billingapp\billingapp\components\StyledText.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -95,8 +97,8 @@
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="Calculattions.ts" path="D:\Projects\billingapp\billingapp\constants\Calculattions.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
       </file>
       <file name="Colors.ts" path="D:\Projects\billingapp\billingapp\constants\Colors.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -105,10 +107,10 @@
       </file>
       <file name="DesignColors.ts" path="D:\Projects\billingapp\billingapp\constants\DesignColors.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
       </file>
     </package>
     <package name="hooks">
@@ -122,17 +124,17 @@
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
       <file name="BillContext.tsx" path="D:\Projects\billingapp\billingapp\providers\BillContext.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
       </file>
       <file name="ProductContext.tsx" path="D:\Projects\billingapp\billingapp\providers\ProductContext.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
       </file>
     </package>
     <package name="screens">

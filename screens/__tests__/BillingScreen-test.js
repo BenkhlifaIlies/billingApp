@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import BillingScreen from "../../screens/BillingScreen";
+import BillingScreen from "../BillingScreen";
 
 import { BillProvider } from "../../providers/BillContext";
 import { ProductProvider } from "../../providers/ProductContext";
