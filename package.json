@@ -9,11 +9,15 @@
     "test": "jest --watchAll"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@react-native-picker/picker)"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-picker/picker": "1.16.1",
     "@react-navigation/bottom-tabs": "5.11.2",
     "@react-navigation/native": "~5.8.10",
     "@react-navigation/stack": "~5.12.8",
@@ -32,17 +36,25 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-paper": "^4.9.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+    "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
     "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@testing-library/jest-native": "^4.0.2",
+    "@testing-library/react-native": "^7.2.0",
+    "@types/jest": "^26.0.24",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
-    "jest-expo": "~41.0.0-beta.0",
+    "jest": "^27.0.6",
+    "jest-expo": "^42.1.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "16.14.0",
     "typescript": "~4.0.0"
   },
   "private": true

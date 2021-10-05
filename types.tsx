@@ -1,11 +1,9 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
+export type AuthStackParamList = {
+  Login: undefined;
+};
 
 export type RootStackParamList = {
   Root: undefined;
-  LogIn: undefined;
   NotFound: undefined;
 };
 
@@ -16,13 +14,14 @@ export type BottomTabParamList = {
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+  BillingScreen: undefined;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  ItemsScreen: undefined;
+  DetailScreen: undefined;
 };
 
 export type TabThreeParamList = {
-  TabThreeScreen: undefined;
+  LogoutScreen: undefined;
 };

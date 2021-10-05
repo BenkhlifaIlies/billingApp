@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "padding": 10,
+      "paddingBottom": 0,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignContent": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 6,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 18,
+        }
+      }
+    >
+      Add Product
+    </Text>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#7ABCDD",
+          "color": "#7ABCDD",
+          "fontSize": 15,
+          "fontWeight": "bold",
+          "margin": 0,
+          "padding": 0,
+          "width": 250,
+        }
+      }
+    >
+      <RNCPicker
+        items={
+          Array [
+            Object {
+              "label": "State Selected: AK - 5.0%",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "0.05",
+            },
+            Object {
+              "label": "State Selected: AL - 6.0%",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "0.06",
+            },
+            Object {
+              "label": "State Selected: AR - 3.0%",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "0.03",
+            },
+            Object {
+              "label": "State Selected: AS - 5.7%",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "0.057",
+            },
+            Object {
+              "label": "State Selected: AZ - 10.0%",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "0.1",
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedIndex={0}
+        style={
+          Array [
+            Object {
+              "height": 216,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+  </View>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Enter Product Label"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderColor": "#E7E7E7",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "fontSize": 16,
+        "margin": 2,
+        "marginBottom": 3,
+        "marginVertical": 8,
+        "padding": 8,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <Text
+    style={
+      Object {
+        "color": "red",
+        "fontSize": 12,
+      }
+    }
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+        },
+        Object {
+          "justifyContent": "space-between",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "display": "flex",
+            "flexDirection": "row",
+          },
+          Object {
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignContent": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "padding": 6,
+            },
+            Object {
+              "padding": 0,
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          keyboardType="numeric"
+          onChangeText={[Function]}
+          placeholder="Enter Price"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderColor": "#E7E7E7",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 16,
+                "margin": 2,
+                "marginBottom": 3,
+                "marginVertical": 8,
+                "padding": 8,
+              },
+              Object {
+                "marginRight": 10,
+                "width": 120,
+              },
+              undefined,
+              Object {
+                "width": 130,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+          value=""
+        />
+        <TextInput
+          allowFontScaling={true}
+          keyboardType="numeric"
+          onChangeText={[Function]}
+          placeholder="Enter Quantity"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderColor": "#E7E7E7",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 16,
+                "margin": 2,
+                "marginBottom": 3,
+                "marginVertical": 8,
+                "padding": 8,
+              },
+              Object {
+                "marginRight": 10,
+                "width": 120,
+              },
+              Object {
+                "width": 140,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+          value=""
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#7ABCDD",
+            "fontSize": 15,
+            "fontWeight": "bold",
+            "marginRight": 10,
+          }
+        }
+      >
+        Add to list
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "red",
+          "fontSize": 12,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "red",
+          "fontSize": 12,
+        }
+      }
+    />
+  </View>
+</View>
+`;

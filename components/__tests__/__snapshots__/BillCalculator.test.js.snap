@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+      },
+      Array [
+        Object {
+          "backgroundColor": "white",
+          "bottom": 0,
+          "padding": 10,
+        },
+        Object {
+          "display": "flex",
+        },
+      ],
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginVertical": 10,
+      }
+    }
+  >
+    Total price without tax: $
+    0
+  </Text>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginVertical": 10,
+      }
+    }
+  >
+    Discount 3.0%: $0.00
+  </Text>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginVertical": 10,
+      }
+    }
+  >
+    Tax 5.0%: $0.00
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+          "marginVertical": 10,
+        },
+        Object {
+          "fontWeight": "bold",
+        },
+      ]
+    }
+  >
+    Total price: $0.00
+  </Text>
+</View>
+`;
